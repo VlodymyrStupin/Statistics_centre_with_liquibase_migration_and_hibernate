@@ -13,52 +13,51 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class AnalyticCentre {
-    private static final ActivityRepository activityRepository = new ActivityRepositoryImpl();
-    private static final SubscriberRepository subscriberRepository = new SubscriberRepositoryImpl();
-    private static final DeviceRepository deviceRepository = new DeviceRepositoryImpl();
-    private static final Scanner scanner = new Scanner(System.in);
-    private static LinkedMap<String, String> tariffsMap = new LinkedMap<>();
+    private static final ActivityRepository ACTIVITY_REPOSITORY = new ActivityRepositoryImpl();
+    private static final SubscriberRepository SUBSCRIBER_REPOSITORY = new SubscriberRepositoryImpl();
+    private static final DeviceRepository DEVICE_REPOSITORY = new DeviceRepositoryImpl();
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public void getAnalyticCentreFunction() {
-        final String scanners = scanner.nextLine();
+        final String scanners = SCANNER.nextLine();
         switch (scanners) {
             case "1" -> {
                 System.out.println("Top five subscribers which consume most of sms:");
-                subscriberRepository.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("sms")
+                SUBSCRIBER_REPOSITORY.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("sms")
                         .forEach(System.out::println);
                 System.out.println("Top five subscribers which consume most of call:");
-                subscriberRepository.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("call")
+                SUBSCRIBER_REPOSITORY.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("call")
                         .forEach(System.out::println);
                 System.out.println("Top five subscribers which consume most of internet activity:");
-                subscriberRepository.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("internet activity")
+                SUBSCRIBER_REPOSITORY.getTopFiveSubscribersWhichConsumeMostOfCallsSmsInternetSeparately("internet activity")
                         .forEach(System.out::println);
             }
-            case "2" -> System.out.println(activityRepository.getMostPopularService().toString());
-            case "3" -> System.out.println(deviceRepository.getMostPopularDeviceWhichIsUsedOnTheNetwork());
+            case "2" -> System.out.println(ACTIVITY_REPOSITORY.getMostPopularService().toString());
+            case "3" -> System.out.println(DEVICE_REPOSITORY.getMostPopularDeviceWhichIsUsedOnTheNetwork());
             case "4" -> {
                 System.out.println("Enter any combination of words");
-                subscriberRepository.searchThroughSmsStorage(scanner.nextLine()).forEach(System.out::println);
+                SUBSCRIBER_REPOSITORY.searchThroughSmsStorage(SCANNER.nextLine()).forEach(System.out::println);
             }
             case "5" -> {
                 setTariff();
             }
-            case "0" -> scanner.close();
+            case "0" -> SCANNER.close();
             default -> {
                 System.out.println("Error. Wrong char");
-                scanner.close();
+                SCANNER.close();
             }
         }
     }
 
     public Subscriber getRandomSubscriberFromDataBase() {
         Random random = new Random();
-        Subscriber subscriber = subscriberRepository.getAll().get(random.nextInt(2000));
+        Subscriber subscriber = SUBSCRIBER_REPOSITORY.getAll().get(random.nextInt(2000));
         return subscriber;
     }
 
     public void setTariff() {
         Subscriber subscriber = getRandomSubscriberFromDataBase();
-        tariffsMap = createMapWithTariffs();
+        LinkedMap<String, String> tariffsMap = createMapWithTariffs();
         System.out.println("Hello " + subscriber.getFirstName() + " " +
                 subscriber.getLastName() + ". ");
         System.out.println("Chose new tariff:");
@@ -72,14 +71,14 @@ public class AnalyticCentre {
         System.out.println("8: no limit calls");
         System.out.println("9: no limit gb internet");
         System.out.println("10: no limit sms");
-        final String scanners = scanner.nextLine();
+        final String scanners = SCANNER.nextLine();
         if (subscriber.getTariff().getTariff().equals(tariffsMap.getValue(Integer.parseInt(scanners) - 1))) {
             System.out.println("It is your current tariff");
-            scanner.close();
+            SCANNER.close();
         } else {
-            subscriberRepository.updateTariff(tariffsMap.getValue(Integer.parseInt(scanners) - 1)
+            SUBSCRIBER_REPOSITORY.updateTariff(tariffsMap.getValue(Integer.parseInt(scanners) - 1)
                     , subscriber.getId());
-            System.out.println(subscriberRepository.getSubscriberByIdAfterUpdateTariff(subscriber.getId()));
+            System.out.println(SUBSCRIBER_REPOSITORY.getSubscriberByIdAfterUpdateTariff(subscriber.getId()));
         }
     }
 

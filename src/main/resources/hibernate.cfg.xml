@@ -4,21 +4,21 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mariadb://127.0.0.1:3306/analytic_system</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/analytic_centre</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.pool_size">10</property>
-        <property name="dialect">org.hibernate.dialect.MariaDBDialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         <property name="show_sql">false</property>
         <property name="hbm2ddl.auto">validate</property>
         <property name="hibernate.connection.autocommit">false</property>
         <property name="current_session_context_class">thread</property>
 
 
-        <mapping class="entity.ua.stupin.analyticCentre.Device"/>
-        <mapping class="entity.ua.stupin.analyticCentre.Subscriber"/>
-        <mapping class="entity.ua.stupin.analyticCentre.Tariff"/>
-        <mapping class="entity.ua.stupin.analyticCentre.Activity"/>
+        <mapping class="com.stupin.analyticCentre.entity.Device"/>
+        <mapping class="com.stupin.analyticCentre.entity.Subscriber"/>
+        <mapping class="com.stupin.analyticCentre.entity.Tariff"/>
+        <mapping class="com.stupin.analyticCentre.entity.Activity"/>
     </session-factory>
 </hibernate-configuration>
