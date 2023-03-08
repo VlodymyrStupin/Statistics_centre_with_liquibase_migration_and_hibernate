@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+    <changeSet id="fill-table" author="Volodymyr_Stupin">
+        <sqlFile path="META-INF/sqlQuery/devices.sql"/>
+        <sqlFile path="META-INF/sqlQuery/tariffs.sql"/>
+        <sqlFile path="META-INF/sqlQuery/subscribers.sql"/>
+        <sqlFile path="META-INF/sqlQuery/activities.sql"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+insert into tariffs values ('cheap sms', 20);
+insert into tariffs values ('cheap call', 32);
+insert into tariffs values ('cheap internet', 24);
+insert into tariffs values ('cheap sms + calls', 42);
+insert into tariffs values ('cheap sms + internet', 55);
+insert into tariffs values ('cheap calls + internet', 52);
+insert into tariffs values ('no limit gb internet', 68);
+insert into tariffs values ('no limit calls', 65);
+insert into tariffs values ('no limit sms', 66);
+insert into tariffs values ('all inclusive', 100);

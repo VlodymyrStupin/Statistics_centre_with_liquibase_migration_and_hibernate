@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+    <changeSet id="create-tables" author="Volodymyr_Stupin">
+        <createTable tableName="devices">
+            <column name="model" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_devices"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+        <createTable tableName="tariffs">
+            <column name="tariff" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tariffs"/>
+            </column>
+            <column name="price" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="subscribers">
+            <column name="subscriber_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_subscribers"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="tariff" type="VARCHAR(255)"/>
+            <column name="device" type="VARCHAR(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="device"
+                                 baseTableName="subscribers"
+                                 constraintName="FK_SUBSCRIBERS_ON_DEVICE"
+                                 referencedColumnNames="model"
+                                 referencedTableName="devices"/>
+        <addForeignKeyConstraint baseColumnNames="tariff"
+                                 baseTableName="subscribers"
+                                 constraintName="FK_SUBSCRIBERS_ON_TARIFF"
+                                 referencedColumnNames="tariff"
+                                 referencedTableName="tariffs"/>
+        <createTable tableName="activities">
+            <column name="activity_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_activities"/>
+            </column>
+            <column name="date_of_activities" type="DATETIME"/>
+            <column name="type_of_activities" type="VARCHAR(255)"/>
+            <column name="log_of_activities" type="VARCHAR(255)"/>
+            <column name="subscriber_id" type="VARCHAR(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="subscriber_id"
+                                 baseTableName="activities"
+                                 constraintName="FK_ACTIVITIES_ON_SUBSCRIBER"
+                                 onDelete="CASCADE"
+                                 referencedColumnNames="subscriber_id"
+                                 referencedTableName="subscribers"/>
+    </changeSet>
+</databaseChangeLog>
