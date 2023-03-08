@@ -16,9 +16,9 @@
         <property name="current_session_context_class">thread</property>
 
 
-        <mapping class="ua.stupin.analyticCentre.entities.Device"/>
-        <mapping class="ua.stupin.analyticCentre.entities.Subscriber"/>
-        <mapping class="ua.stupin.analyticCentre.entities.Tariff"/>
-        <mapping class="ua.stupin.analyticCentre.entities.Activity"/>
+        <mapping class="entity.ua.stupin.analyticCentre.Device"/>
+        <mapping class="entity.ua.stupin.analyticCentre.Subscriber"/>
+        <mapping class="entity.ua.stupin.analyticCentre.Tariff"/>
+        <mapping class="entity.ua.stupin.analyticCentre.Activity"/>
     </session-factory>
 </hibernate-configuration>

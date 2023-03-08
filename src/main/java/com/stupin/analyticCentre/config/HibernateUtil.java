@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 
 import static javax.persistence.Persistence.createEntityManagerFactory;
 
-public class HibernateUtils {
+public class HibernateUtil {
     private static SessionFactory factory;
     private static EntityManager entityManager;
 

@@ -1,10 +1,10 @@
-package ua.stupin.analyticCentre.repository.hibernate;
+package com.stupin.analyticCentre.repository.hibernate;
 
+import com.stupin.analyticCentre.config.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import ua.stupin.analyticCentre.config.HibernateUtils;
-import ua.stupin.analyticCentre.entities.Device;
-import ua.stupin.analyticCentre.repository.DeviceRepository;
+import com.stupin.analyticCentre.entity.Device;
+import com.stupin.analyticCentre.repository.DeviceRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class DeviceRepositoryImpl extends AbstractRepository<Device> implements 
     protected void init() {
         aClass = Device.class;
     }
-    private static final String getMostPopularDeviceWhichIsUsedOnTheNetwork
+    private static final String GET_MOST_POPULAR_DEVICE_WHICH_IS_USED_ON_THE_NETWORK
             = "SELECT devices.model, devices.`type`, COUNT(devices.model) AS devices_frequency \n" +
             "FROM devices\n" +
             "INNER JOIN subscribers\n" +
@@ -25,9 +25,9 @@ public class DeviceRepositoryImpl extends AbstractRepository<Device> implements 
     public List<Device> getMostPopularDeviceWhichIsUsedOnTheNetwork() {
         List<Device> deviceList = new ArrayList<>();
         Session session = null;
-        session = HibernateUtils.getFactory().openSession();
+        session = HibernateUtil.getFactory().openSession();
         session.beginTransaction();
-        Query query = session.createSQLQuery(getMostPopularDeviceWhichIsUsedOnTheNetwork)
+        Query query = session.createSQLQuery(GET_MOST_POPULAR_DEVICE_WHICH_IS_USED_ON_THE_NETWORK)
                 .addEntity(aClass);
         deviceList = query.list();
         session.getTransaction().commit();

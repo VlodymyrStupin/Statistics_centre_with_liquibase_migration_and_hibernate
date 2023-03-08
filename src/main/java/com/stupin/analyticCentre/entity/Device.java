@@ -1,4 +1,4 @@
-package ua.stupin.analyticCentre.entities;
+package com.stupin.analyticCentre.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

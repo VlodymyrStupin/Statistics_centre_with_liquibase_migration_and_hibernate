@@ -1,6 +1,6 @@
-package ua.stupin.analyticCentre.repository;
+package com.stupin.analyticCentre.repository;
 
-import ua.stupin.analyticCentre.entities.Device;
+import com.stupin.analyticCentre.entity.Device;
 
 import java.util.List;
 

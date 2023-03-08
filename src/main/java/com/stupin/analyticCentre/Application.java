@@ -1,9 +1,9 @@
-package ua.stupin.analyticCentre;
+package com.stupin.analyticCentre;
 
-import ua.stupin.analyticCentre.statisticsDepartment.AnalyticCentreUtil;
+import com.stupin.analyticCentre.analytic.AnalyticCentre;
 
-public class RunAnalyticCentre {
-    private static final AnalyticCentreUtil analyticCentre = new AnalyticCentreUtil();
+public class Application {
+    private static final AnalyticCentre analyticCentre = new AnalyticCentre();
 
     public static void main(String[] args) {
         System.out.println("For invoke function from analytic centre input the number:");

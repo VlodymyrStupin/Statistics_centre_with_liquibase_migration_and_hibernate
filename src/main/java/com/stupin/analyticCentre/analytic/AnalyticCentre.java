@@ -12,7 +12,7 @@ import com.stupin.analyticCentre.repository.hibernate.SubscriberRepositoryImpl;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AnalyticCentreUtil {
+public class AnalyticCentre {
     private static final ActivityRepository activityRepository = new ActivityRepositoryImpl();
     private static final SubscriberRepository subscriberRepository = new SubscriberRepositoryImpl();
     private static final DeviceRepository deviceRepository = new DeviceRepositoryImpl();

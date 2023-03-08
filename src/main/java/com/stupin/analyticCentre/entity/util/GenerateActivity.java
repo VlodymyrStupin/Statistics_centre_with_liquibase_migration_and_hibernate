@@ -1,4 +1,4 @@
-package com.stupin.analyticCentre.entity.utill;
+package com.stupin.analyticCentre.entity.util;
 
 
 import com.github.javafaker.Faker;

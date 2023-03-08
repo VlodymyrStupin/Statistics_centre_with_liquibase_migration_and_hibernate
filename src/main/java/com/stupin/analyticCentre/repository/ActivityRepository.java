@@ -1,4 +1,4 @@
-package ua.stupin.analyticCentre.repository;
+package com.stupin.analyticCentre.repository;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package ua.stupin.analyticCentre.repository.hibernate;
+package com.stupin.analyticCentre.repository.hibernate;
 
-import ua.stupin.analyticCentre.config.HibernateUtils;
-import ua.stupin.analyticCentre.repository.GenericRepository;
+import com.stupin.analyticCentre.config.HibernateUtil;
+import com.stupin.analyticCentre.repository.GenericRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -21,7 +21,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T> {
 
     @Override
     public T getById(String id) {
-        EntityManager entityManager = HibernateUtils.getEntityManager();
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = criteriaBuilder.createQuery(aClass);
         Root<T> from = query.from(aClass);
@@ -30,7 +30,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T> {
     }
     @Override
     public List<T> getAll() {
-        EntityManager entityManager = HibernateUtils.getEntityManager();
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = criteriaBuilder.createQuery(aClass);
         Root<T> from = query.from(aClass);
@@ -39,7 +39,7 @@ public abstract class AbstractRepository<T> implements GenericRepository<T> {
     }
     @Override
     public void save(T value) {
-        EntityManager entityManager = HibernateUtils.getEntityManager();
+        EntityManager entityManager = HibernateUtil.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         entityManager.persist(value);
